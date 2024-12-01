@@ -96,10 +96,11 @@ def draw(canvas):
 
     #draw paddles and ball
     if frame >= 39:
-        frame = 1
+        frame = 1        
     GREEN = pygame.image.load(f"ball_frames/{frame}.png").convert_alpha()
     masked_result = GREEN.copy()
-    frame = frame + 1
+    if pygame.time.get_ticks() % 3 == 0:
+        frame = frame + 1
     window.blit(GREEN, (pygame.draw.circle(canvas, WHITE, ball_pos, BALL_RADIUS, BALL_RADIUS)))
     pygame.draw.polygon(canvas, RED, [[paddle1_pos[0] - HALF_PAD_WIDTH, paddle1_pos[1] - HALF_PAD_HEIGHT], [paddle1_pos[0] - HALF_PAD_WIDTH, paddle1_pos[1] + HALF_PAD_HEIGHT], [paddle1_pos[0] + HALF_PAD_WIDTH, paddle1_pos[1] + HALF_PAD_HEIGHT], [paddle1_pos[0] + HALF_PAD_WIDTH, paddle1_pos[1] - HALF_PAD_HEIGHT]], 0)
     pygame.draw.polygon(canvas, RED, [[paddle2_pos[0] - HALF_PAD_WIDTH, paddle2_pos[1] - HALF_PAD_HEIGHT], [paddle2_pos[0] - HALF_PAD_WIDTH, paddle2_pos[1] + HALF_PAD_HEIGHT], [paddle2_pos[0] + HALF_PAD_WIDTH, paddle2_pos[1] + HALF_PAD_HEIGHT], [paddle2_pos[0] + HALF_PAD_WIDTH, paddle2_pos[1] - HALF_PAD_HEIGHT]], 0)
